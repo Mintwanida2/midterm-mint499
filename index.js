@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const movieRouter = require('./movie/index');
+const studentRouter = require('./students/index');
 const{createWriteStream} = require('fs');
 const { Stream } = require('stream');
 
@@ -9,10 +9,10 @@ const app = express();
 const accessLogStream = createWriteStream('access.log',{flags:'a'});
 app.use(express.static('public'))
 app.use(morgan('common',{immediate:true,stream:accessLogStream}));
-app.use('/movie',movieRouter);
+app.use('/students',studentRouter);
 
-app.get('/',(request,response) => {response.redirect('/movie')})
+app.get('/',(request,response) => {response.redirect('/students')})
 
-app.listen(3000, () => {
-    console.log('Server is lintening to http://localhost:3000');
+app.listen(8000, () => {
+    console.log('Server is lintening to http://localhost:8000');
 });
